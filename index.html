@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>MENU</h1>
+    <h2 class="valgte"></h2>
+    <nav>
+      <button data-kategori="alle" class="valgt">Alle retter</button>
+      <button data-kategori="forretter">Forretter</button>
+      <button data-kategori="hovedretter">Hovedretter</button>
+      <button data-kategori="sideorders">Sideorders</button>
+      <button data-kategori="desserter">Desserter</button>
+      <button data-kategori="drikkevarer">Drinks</button>
+    </nav>
+    <section class="container"></section>
+    <template>
+      <article>
+        <img src="" alt="" />
+        <div class="info">
+          <h3></h3>
+          <p class="kortbeskrivelse"></p>
+          <p class="pris"></p>
+        </div>
+      </article>
+    </template>
+    <main class="liste"></main>
+    <style>
+      img {
+        width: 100%;
+        height: 250px;
+        border-radius: 10px;
+      }
+
+      main {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1rem;
+      }
+
+      article {
+        border: 2px solid;
+        border-radius: 10px;
+      }
+
+      .info {
+        padding: 20px;
+      }
+
+      .valgt {
+        background-color: red;
+      }
+    </style>
+    <script>
+      const url = "https://babushka-dd8a.restdb.io/rest/menu";
+
+      const options = {
+        headers: {
+          "x-apikey": "600ec2fb1346a1524ff12de4",
+        },
+      };
+
+      document.addEventListener("DOMContentLoaded", start);
+
+      let kategorier;
+      let filter = "alle";
+      const filterKnapper = document.querySelectorAll("button");
+
+      function start() {
+        filterKnapper.forEach((knap) =>
+          knap.addEventListener("click", filterRetter)
+        );
+        hentData();
+      }
+
+      const valgte = document.querySelector(".valgte");
+
+      function filterRetter() {
+        filter = this.dataset.kategori; //sætter variablen "filter" til værdien af data-kategorien på knappen
+        document.querySelector(".valgt").classList.remove("valgt"); //fjerner class valgt fra den knap
+        this.classList.add("valgt"); //marker den knap der er klikket på
+
+        vis();
+
+        valgte.textContent = this.textContent;
+      }
+
+      async function hentData() {
+        const respons = await fetch(url, options);
+        kategorier = await respons.json();
+        console.log(kategorier);
+        vis();
+      }
+
+      hentData();
+
+      const main = document.querySelector("main");
+      const temp = document.querySelector("template").content;
+
+      function vis() {
+        console.log(kategorier);
+        main.innerHTML = "";
+        //indsætter data i template
+        kategorier.forEach((ret) => {
+          if (filter == ret.kategori || filter == "alle") {
+            const klon = temp.cloneNode(true);
+            klon.querySelector("img").src = `medium/${ret.billednavn}-md.jpg`;
+            klon.querySelector("h3").textContent = `${ret.navn}`;
+            klon.querySelector(
+              ".kortbeskrivelse"
+            ).textContent = `${ret.kortbeskrivelse}`;
+            klon.querySelector(".pris").textContent = `${ret.pris} kr.`;
+            main.appendChild(klon);
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
