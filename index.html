@@ -19,7 +19,7 @@
     </nav>
     <section class="container"></section>
     <template>
-      <article>
+      <article class="retten">
         <img src="" alt="" />
         <div class="info">
           <h3></h3>
@@ -107,6 +107,8 @@
         main.innerHTML = "";
         //indsætter data i template
         kategorier.forEach((ret) => {
+          //loop igennem json retter
+          //tjekker hvilken kategori retten har, og sammenligner med den aktuelle værdi "alle"
           if (filter == ret.kategori || filter == "alle") {
             const klon = temp.cloneNode(true);
             klon.querySelector("img").src = `medium/${ret.billednavn}-md.jpg`;
@@ -115,9 +117,18 @@
               ".kortbeskrivelse"
             ).textContent = `${ret.kortbeskrivelse}`;
             klon.querySelector(".pris").textContent = `${ret.pris} kr.`;
+
+            klon
+              .querySelector(".retten")
+              .addEventListener("click", () => visDetaljer(ret));
+
             main.appendChild(klon);
           }
         });
+      }
+
+      function visDetaljer(hvilken) {
+        location.href = `detaljer.html?id=${hvilken._id}`;
       }
     </script>
   </body>
