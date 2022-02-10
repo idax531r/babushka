@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Roboto:wght@100;300&display=swap"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <title>Bistro Babushka</title>
   </head>
   <body>
     <header>
@@ -18,7 +18,6 @@
       <h1>Bistro Babushka</h1>
     </header>
     <main>
-      <button>Tilbage</button>
       <article class="retten">
         <h3></h3>
         <p class="kortbeskrivelse"></p>
@@ -29,8 +28,26 @@
           <p class="pris"></p>
         </div>
       </article>
+      <button>Tilbage til menuen</button>
     </main>
-    <footer><p>Lavet af Ida Viborg</p></footer>
+    <footer>
+      <div class="kontakt">
+        <h4>Kontakt</h4>
+        <ul>
+          <li>Mølle Allé 7, 2500 Valby</li>
+          <li>Tlf.: 45 56556525</li>
+          <li>Mail: bistro_babushka@bistro.dk</li>
+        </ul>
+      </div>
+      <div class="åbningstider">
+        <h4>Åbningstider</h4>
+        <ul>
+          <li>Man-tor: 16:00-22:00</li>
+          <li>Fre-lør: 16:00-24:00</li>
+          <li>Søndag: Lukket</li>
+        </ul>
+      </div>
+    </footer>
 
     <style>
       .image {
@@ -47,11 +64,30 @@
       }
 
       footer {
-        text-align: center;
+        font-family: "Roboto", sans-serif;
         background-color: #8e412e;
         color: white;
         padding: 2rem;
-        margin-top: 1rem;
+      }
+
+      ul {
+        margin-bottom: 10px;
+      }
+
+      ul li {
+        list-style-type: none;
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      h4 {
+        font-weight: 300;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+      }
+
+      .kontakt {
+        margin-bottom: 30px;
       }
 
       header {
@@ -77,17 +113,20 @@
       }
 
       button {
-        background-color: #f4ece2;
+        display: grid;
+        font-family: "Roboto", sans-serif;
+        background-color: #a2a182;
         border: none;
         border-radius: 10px;
         padding: 10px;
         margin: 10px;
         cursor: pointer;
         font-size: 1rem;
+        margin: 0rem 0rem 3rem 2rem;
       }
 
       button:hover {
-        background-color: #a2a182;
+        background-color: #f4ece2;
       }
 
       h3 {
@@ -106,9 +145,9 @@
 
       article {
         display: grid;
-        grid-template-columns: 600px;
         place-content: center;
         place-items: center;
+        padding: 2rem;
       }
 
       @media (min-width: 600px) {
@@ -128,6 +167,24 @@
 
         h1 {
           font-size: 4.5rem;
+        }
+
+        article {
+          display: grid;
+          grid-template-columns: 600px;
+          place-content: center;
+          place-items: center;
+        }
+
+        footer {
+          display: grid;
+          grid-template-columns: 300px 300px;
+
+          place-items: start;
+        }
+
+        .kontakt {
+          margin-bottom: 0;
         }
       }
     </style>

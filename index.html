@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Roboto:wght@100;300&display=swap"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <title>Bistro Babushka</title>
   </head>
   <body>
     <header>
@@ -38,11 +38,27 @@
       </article>
     </template>
     <main class="liste"></main>
-    <footer><p>Lavet af Ida Viborg</p></footer>
+    <footer>
+      <div class="kontakt">
+        <h4>Kontakt</h4>
+        <ul>
+          <li>Mølle Allé 7, 2500 Valby</li>
+          <li>Tlf.: 45 56556525</li>
+          <li>Mail: bistro_babushka@bistro.dk</li>
+        </ul>
+      </div>
+      <div class="åbningstider">
+        <h4>Åbningstider</h4>
+        <ul>
+          <li>Man-tor: 16:00-22:00</li>
+          <li>Fre-lør: 16:00-24:00</li>
+          <li>Søndag: Lukket</li>
+        </ul>
+      </div>
+    </footer>
     <style>
       .image {
         width: 100%;
-        height: 200px;
         border-top-left-radius: 70px;
         border-top-right-radius: 70px;
       }
@@ -56,15 +72,31 @@
       }
 
       footer {
-        text-align: center;
+        font-family: "Roboto", sans-serif;
         background-color: #8e412e;
         color: white;
         padding: 2rem;
       }
 
+      ul {
+        margin-bottom: 10px;
+      }
+
+      ul li {
+        list-style-type: none;
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      h4 {
+        font-weight: 300;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+      }
+
       header {
         display: grid;
-        grid-template-columns: 150px 350px;
+        grid-template-columns: 120px 250px;
         grid-template-rows: 1fr;
         place-items: center;
         justify-content: center;
@@ -74,12 +106,12 @@
       }
 
       header img {
-        width: 130px;
+        width: 100px;
       }
 
       h1 {
         font-family: "Amatic SC", cursive;
-        font-size: 4.5rem;
+        font-size: 3.2rem;
         font-weight: 400;
         color: white;
       }
@@ -88,12 +120,16 @@
         text-align: center;
         font-family: "Roboto", sans-serif;
         font-size: 2rem;
+        font-weight: 400;
         margin-top: 1rem;
       }
 
+      .kontakt {
+        margin-bottom: 30px;
+      }
+
       nav {
-        display: flex;
-        justify-content: center;
+        text-align: center;
       }
 
       button {
@@ -117,18 +153,16 @@
       }
 
       main {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        column-gap: 1.5rem;
-        row-gap: 4rem;
-        margin: 2rem 7rem 5rem 7rem;
+        padding: 3rem;
+        margin-bottom: 2rem;
       }
 
       h3 {
         font-family: "Roboto", sans-serif;
         font-size: 1.3rem;
-        font-weight: 300;
-        margin-bottom: 5px;
+        font-weight: 500;
+        margin-top: 5px;
+        margin-bottom: 15px;
       }
 
       p {
@@ -140,6 +174,10 @@
         margin-bottom: 15px;
       }
 
+      .pris {
+        font-weight: bold;
+      }
+
       article {
         display: grid;
         border: 2px solid #a2a182;
@@ -147,10 +185,54 @@
         border-top-right-radius: 70px;
         cursor: pointer;
         padding: 1rem;
+        margin-bottom: 2rem;
       }
 
       .info {
-        padding: 20px;
+        margin-top: 10px;
+      }
+
+      @media (min-width: 500px) {
+        nav {
+          display: flex;
+          justify-content: center;
+        }
+        header {
+          display: grid;
+          grid-template-columns: 150px 350px;
+          grid-template-rows: 1fr;
+          place-items: center;
+          justify-content: center;
+          padding: 2rem;
+          margin-bottom: 2rem;
+        }
+
+        header img {
+          width: 130px;
+        }
+
+        h1 {
+          font-size: 4.5rem;
+        }
+
+        footer {
+          display: grid;
+          grid-template-columns: 300px 300px;
+
+          place-items: start;
+        }
+
+        .kontakt {
+          margin-bottom: 0;
+        }
+
+        main {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+          column-gap: 1.5rem;
+          row-gap: 4rem;
+          margin: 2rem 7rem 5rem 7rem;
+        }
       }
     </style>
     <script>
