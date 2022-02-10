@@ -4,11 +4,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Roboto:wght@100;300&display=swap"
+      rel="stylesheet"
+    />
     <title>Document</title>
   </head>
   <body>
-    <h1>MENU</h1>
-    <h2 class="valgte"></h2>
+    <header>
+      <img src="logo_bistro_logo.svg" alt="logo" />
+      <h1>Bistro Babushka</h1>
+    </header>
     <nav>
       <button data-kategori="alle" class="valgt">Alle retter</button>
       <button data-kategori="forretter">Forretter</button>
@@ -17,10 +25,11 @@
       <button data-kategori="desserter">Desserter</button>
       <button data-kategori="drikkevarer">Drinks</button>
     </nav>
+    <h2 class="valgte"></h2>
     <section class="container"></section>
     <template>
       <article class="retten">
-        <img src="" alt="" />
+        <img class="image" src="" alt="" />
         <div class="info">
           <h3></h3>
           <p class="kortbeskrivelse"></p>
@@ -29,31 +38,119 @@
       </article>
     </template>
     <main class="liste"></main>
+    <footer><p>Lavet af Ida Viborg</p></footer>
     <style>
-      img {
+      .image {
         width: 100%;
-        height: 250px;
+        height: 200px;
+        border-top-left-radius: 70px;
+        border-top-right-radius: 70px;
+      }
+
+      * {
+        margin: 0;
+      }
+
+      body {
+        background-color: #f4ece2;
+      }
+
+      footer {
+        text-align: center;
+        background-color: #8e412e;
+        color: white;
+        padding: 2rem;
+      }
+
+      header {
+        display: grid;
+        grid-template-columns: 150px 350px;
+        grid-template-rows: 1fr;
+        place-items: center;
+        justify-content: center;
+        background-color: #ba6f4d;
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      header img {
+        width: 130px;
+      }
+
+      h1 {
+        font-family: "Amatic SC", cursive;
+        font-size: 4.5rem;
+        font-weight: 400;
+        color: white;
+      }
+
+      h2 {
+        text-align: center;
+        font-family: "Roboto", sans-serif;
+        font-size: 2rem;
+        margin-top: 1rem;
+      }
+
+      nav {
+        display: flex;
+        justify-content: center;
+      }
+
+      button {
+        font-family: "Roboto", sans-serif;
+        background-color: #f4ece2;
+        border: none;
         border-radius: 10px;
+        padding: 10px;
+        margin: 10px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+
+      button:hover {
+        background-color: #a2a182;
+      }
+
+      .valgt {
+        background-color: #687259;
+        color: white;
       }
 
       main {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1rem;
-        margin: 2rem 7rem 2rem 7rem;
+        column-gap: 1.5rem;
+        row-gap: 4rem;
+        margin: 2rem 7rem 5rem 7rem;
+      }
+
+      h3 {
+        font-family: "Roboto", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 300;
+        margin-bottom: 5px;
+      }
+
+      p {
+        font-family: "Roboto", sans-serif;
+        font-size: 1rem;
+      }
+
+      .kortbeskrivelse {
+        margin-bottom: 15px;
       }
 
       article {
-        border: 2px solid;
-        border-radius: 10px;
+        display: grid;
+        border: 2px solid #a2a182;
+        border-top-left-radius: 70px;
+        border-top-right-radius: 70px;
+        cursor: pointer;
+        padding: 1rem;
       }
 
       .info {
         padding: 20px;
-      }
-
-      .valgt {
-        background-color: red;
       }
     </style>
     <script>
@@ -111,12 +208,14 @@
           //tjekker hvilken kategori retten har, og sammenligner med den aktuelle værdi "alle"
           if (filter == ret.kategori || filter == "alle") {
             const klon = temp.cloneNode(true);
-            klon.querySelector("img").src = `medium/${ret.billednavn}-md.jpg`;
+            klon.querySelector(
+              ".image"
+            ).src = `medium/${ret.billednavn}-md.jpg`;
             klon.querySelector("h3").textContent = `${ret.navn}`;
             klon.querySelector(
               ".kortbeskrivelse"
             ).textContent = `${ret.kortbeskrivelse}`;
-            klon.querySelector(".pris").textContent = `${ret.pris} kr.`;
+            klon.querySelector(".pris").textContent = `DKK ${ret.pris}`;
 
             klon
               .querySelector(".retten")

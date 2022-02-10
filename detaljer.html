@@ -4,15 +4,25 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Roboto:wght@100;300&display=swap"
+      rel="stylesheet"
+    />
     <title>Document</title>
   </head>
   <body>
+    <header>
+      <img src="logo_bistro_logo.svg" alt="logo" />
+      <h1>Bistro Babushka</h1>
+    </header>
     <main>
       <button>Tilbage</button>
       <article class="retten">
         <h3></h3>
         <p class="kortbeskrivelse"></p>
-        <img src="" alt="" />
+        <img class="image" src="" alt="" />
         <div class="info">
           <p class="land"></p>
           <p class="langbeskrivelse"></p>
@@ -20,6 +30,107 @@
         </div>
       </article>
     </main>
+    <footer><p>Lavet af Ida Viborg</p></footer>
+
+    <style>
+      .image {
+        width: 100%;
+        border-radius: 2%;
+      }
+
+      * {
+        margin: 0;
+      }
+
+      body {
+        background-color: #f4ece2;
+      }
+
+      footer {
+        text-align: center;
+        background-color: #8e412e;
+        color: white;
+        padding: 2rem;
+        margin-top: 1rem;
+      }
+
+      header {
+        display: grid;
+        grid-template-columns: 120px 250px;
+        grid-template-rows: 1fr;
+        place-items: center;
+        justify-content: center;
+        background-color: #ba6f4d;
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      header img {
+        width: 100px;
+      }
+
+      h1 {
+        font-family: "Amatic SC", cursive;
+        font-size: 3.2rem;
+        font-weight: 400;
+        color: white;
+      }
+
+      button {
+        background-color: #f4ece2;
+        border: none;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 10px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+
+      button:hover {
+        background-color: #a2a182;
+      }
+
+      h3 {
+        font-family: "Roboto", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 200;
+        margin-bottom: 5px;
+      }
+
+      p {
+        font-family: "Roboto", sans-serif;
+        font-size: 1rem;
+        margin-bottom: 20px;
+        margin-top: 20px;
+      }
+
+      article {
+        display: grid;
+        grid-template-columns: 600px;
+        place-content: center;
+        place-items: center;
+      }
+
+      @media (min-width: 600px) {
+        header {
+          display: grid;
+          grid-template-columns: 150px 350px;
+          grid-template-rows: 1fr;
+          place-items: center;
+          justify-content: center;
+          padding: 2rem;
+          margin-bottom: 2rem;
+        }
+
+        header img {
+          width: 130px;
+        }
+
+        h1 {
+          font-size: 4.5rem;
+        }
+      }
+    </style>
 
     <script>
       //henter URL parameteren ud, og overfører vores ID hertil
@@ -48,14 +159,16 @@
         document.querySelector(
           ".kortbeskrivelse"
         ).textContent = `${ret.kortbeskrivelse}`;
-        document.querySelector("img").src = `medium/${ret.billednavn}-md.jpg`;
+        document.querySelector(
+          ".image"
+        ).src = `medium/${ret.billednavn}-md.jpg`;
         document.querySelector(
           ".land"
         ).textContent = `Oprindelsesregion: ${ret.oprindelsesregion}`;
         document.querySelector(
           ".langbeskrivelse"
         ).textContent = `${ret.langbeskrivelse}`;
-        document.querySelector(".pris").textContent = `Pris: ${ret.pris} kr.`;
+        document.querySelector(".pris").textContent = `DKK ${ret.pris}`;
       }
 
       hentData();
